@@ -5,7 +5,7 @@
 # Date:             Feb. 25, 2015  
 # Programmer:       Keith Farnham, Victor Tran 
 #
-# Description:      Using a sequence of MIPS instructions......
+# Description:      Using a sequence of MIPS instructions 
 #
 # Register useage:  $t1, $t0, $v0
 #
