@@ -121,7 +121,7 @@ noCarry3:
 	   beq $t4, $zero, noCarry4			#branch if no carry
 	   addi $t7, $zero, 0xFF000000			#if carry, set sum to FF						
 noCarry4:  							
-	   srl $t7, $t7, 24				#shift sum right 16 bits
+	   srl $t7, $t7, 24				#shift sum right 24 bits
 	   add $t5, $t5, $t7	 			#move sum to result reg t5
 	   lw $t2, 16($t0) 				#load fifth 8 bits of vec a into t2
 	   lw $t3, 16($t1)				#load fifth 8 bits of vec b into t3						
@@ -133,43 +133,41 @@ noCarry4:
 	   addi $t6, $zero, 0xFF000000			#if carry, set sum to FF
 	   
 noCarry5:   
-	   srl $t7, $t7, 16				#shift sum right 16 bits
-	   add $t5, $t5, $t7	 			#move sum to result reg t5
-	   lw $t2, 12($t0) 				#load fourth 8 bits of vec a into t2
-	   lw $t3, 12($t1)				#load fourth 8 bits of vec b into t3						
+	   srl $t7, $t7, 24				#shift sum right 24 bits
+	   add $t6, $t6, $t7	 			#move sum to result reg t6
+	   lw $t2, 20($t0) 				#load sixth 8 bits of vec a into t2
+	   lw $t3, 20($t1)				#load sixth 8 bits of vec b into t3						
 	   sll $t2, $t2, 24				#shift t2 value left to highest bit
 	   sll $t3, $t3, 24				#shift t3 value left to highest bit	
-	   addu $t7, $t2, $t3				#add fourth 8 bits of vec a and b and store into t7
+	   addu $t7, $t2, $t3				#add sixth 8 bits of vec a and b and store into t7
 	   sltu $t4, $t7, $t2				#set t4 to 1 if carry				
-	   beq $t4, $zero, noCarry4			#branch if no carry
+	   beq $t4, $zero, noCarry6			#branch if no carry
 	   addi $t7, $zero, 0xFF000000			#if carry, set sum to FF	
 noCarry6:  
-	   srl $t7, $t7, 8
-	   add $t6, $t6, $t7	 
-	   lw $t2, 24($t0) 
-	   lw $t3, 24($t1)	
-	   sll $t2, $t2, 24
-	   sll $t3, $t3, 24
-	   addu $t7, $t2, $t3
-	   sltu $t4, $t7, $t2
-	   beq $t4, $zero, noCarry7
-	   addi $t7, $zero, 0xFF000000
+	   srl $t7, $t7, 8				#shift sum right 8 bits
+	   add $t6, $t6, $t7	 			#move sum to result reg t6
+	   lw $t2, 24($t0) 				#load seventh 8 bits of vec a into t2
+	   lw $t3, 24($t1)				#load seventh 8 bits of vec b into t3						
+	   sll $t2, $t2, 24				#shift t2 value left to highest bit
+	   sll $t3, $t3, 24				#shift t3 value left to highest bit	
+	   addu $t7, $t2, $t3				#add seventh 8 bits of vec a and b and store into t7
+	   sltu $t4, $t7, $t2				#set t4 to 1 if carry				
+	   beq $t4, $zero, noCarry7			#branch if no carry
+	   addi $t7, $zero, 0xFF000000			#if carry, set sum to FF
 noCarry7:  
-	   srl $t7, $t7, 16
-	   add $t6, $t6, $t7	 
-	   lw $t2, 28($t0) 
-	   lw $t3, 28($t1)	
-	   sll $t2, $t2, 24
-	   sll $t3, $t3, 24
-	   addu $t7, $t2, $t3
-	   sltu $t4, $t7, $t2
-	   beq $t4, $zero, noCarry8
-	   addi $t7, $zero, 0xFF000000
+	   srl $t7, $t7, 16				#shift sum right 16 bits
+	   add $t6, $t6, $t7	 			#move sum to result reg t6
+	   lw $t2, 28($t0) 				#load last 8 bits of vec a into t2
+	   lw $t3, 28($t1)				#load last 8 bits of vec b into t3						
+	   sll $t2, $t2, 24				#shift t2 value left to highest bit
+	   sll $t3, $t3, 24				#shift t3 value left to highest bit	
+	   addu $t7, $t2, $t3				#add last 8 bits of vec a and b and store into t7
+	   sltu $t4, $t7, $t2				#set t4 to 1 if carry				
+	   beq $t4, $zero, noCarry8			#branch if no carry
+	   addi $t7, $zero, 0xFF000000			#if carry, set sum to FF
 noCarry8:  
-	   srl $t7, $t7, 24
-	   add $t6, $t6, $t7	
-	   
-	   #LOWER BITS SAVED INTO $t5 UPPER BITS SAVED INTO $t6
+	   srl $t7, $t7, 24				#shift sum right 24 bits
+	   add $t6, $t6, $t7				#move sum to result reg t6
 
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel
