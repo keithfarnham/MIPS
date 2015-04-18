@@ -91,6 +91,6 @@ proc1:     j         proc1               # "placeholder" stub
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
            .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
-array_1:   .word	0x23, 0x0C, 0x12, 0x4D, 0x05, 0x7F, 0x19, 0x2A 
+array_1:   .word	
         	
                       
