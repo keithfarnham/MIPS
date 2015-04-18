@@ -78,35 +78,35 @@ main:      #   ***** Your code begins here *****
 	   
 	   #start shift	
 	   lw $t2, 0($t0) 
-	   sll $t4, $t2, 24			
+	   sll $t5, $t2, 24			
 	     
 	   lw $t2, 0($t1) 			
 	   sll $t2, $t2, 16
-	   add $t4, $t4, $t2	 
+	   add $t5, $t5, $t2	 
 	   lw $t2, 04($t0) 
   
 	   sll $t2, $t2, 08
-	   add $t4, $t4, $t2	 
+	   add $t5, $t5, $t2	 
 	   lw $t2, 04($t1) 
 
 	   sll $t2, $t2,  0
-	   add $t4, $t4, $t2	 
+	   add $t5, $t5, $t2	 
 	   lw $t2, 08($t0) 
   
 	   sll $t2, $t2, 24
-	   add $t5, $t5, $t2	 
+	   add $t6, $t6, $t2	 
 	   lw $t2, 08($t1) 
   
 	   sll $t2, $t2, 16
-	   add $t5, $t5, $t2	 
+	   add $t6, $t6, $t2	 
 	   lw $t2, 12($t0) 
  
 	   sll $t2, $t2, 08
-	   add $t5, $t5, $t2	 
+	   add $t6, $t6, $t2	 
 	   lw $t2, 12($t1) 
 
 	   srl $t2, $t2, 0
-	   add $t5, $t5, $t2		   
+	   add $t6, $t6, $t2		   
 	   #LOWER BITS SAVED INTO $t5 UPPER BITS SAVED INTO $t6
 
            #-----------------------------------------------------------
