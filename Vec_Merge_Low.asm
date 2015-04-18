@@ -79,35 +79,35 @@ main:      #         ***** Your code begins here *****
 	 
 
 	   lw $t2, 16($t0) 		
-	   sll $t4, $t2, 24		  
+	   sll $t5, $t2, 24		  
 	   lw $t2, 16($t1) 			  
 	   
 	   sll $t2, $t2, 16
-	   add $t4, $t4, $t2	 
+	   add $t5, $t5, $t2	 
 	   lw $t2, 20($t0) 
 	  
 	   sll $t2, $t2, 08
-	   add $t4, $t4, $t2	 
+	   add $t5, $t5, $t2	 
 	   lw $t2, 20($t1) 
   
 	   sll $t2, $t2,  0
-	   add $t4, $t4, $t2	 
+	   add $t5, $t5, $t2	 
 	   lw $t2, 24($t0) 
  
 	   sll $t2, $t2, 24
-	   add $t5, $t5, $t2	 
+	   add $t6, $t6, $t2	 
 	   lw $t2, 24($t1) 
 
 	   sll $t2, $t2, 16
-	   add $t5, $t5, $t2	 
+	   add $t6, $t6, $t2	 
 	   lw $t2, 28($t0) 
  
 	   sll $t2, $t2, 08
-	   add $t5, $t5, $t2	 
+	   add $t6, $t6, $t2	 
 	   lw $t2, 28($t1) 
   
 	   srl $t2, $t2, 0
-	   add $t5, $t5, $t2		   
+	   add $t6, $t6, $t2		   
 	   #LOWER BITS SAVED INTO $t5 UPPER BITS SAVED INTO $t6
 
            #-----------------------------------------------------------
