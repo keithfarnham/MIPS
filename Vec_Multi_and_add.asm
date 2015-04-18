@@ -105,6 +105,7 @@ main:      #         ***** Your code begins here *****
 	   sll $t5, $t9, 24
 	   srl $t5, $t5, 24
 	   sw $t5, 28($t1)
+	   srl $t5, $t5, 8 #Sets $t5 to zero
 	   
 	   la $t0, 0x10010000
 	   la $t1, 0x10010020
