@@ -77,7 +77,7 @@ main:
 	   sw $t8, 28($t1)				#store last 8 bits of lower vec b into memory	
 	   
 	   #1st shift
-	   lw $t2, 0($t0) 		
+	   lw $t2, 0($t0) 				
 	   sll $t2, $t2, 28
 	   add $t5, $t5, $t2		
 	   #2nd shift   
