@@ -99,7 +99,6 @@ main:      #         ***** Your code begins here *****
 	   mul $t7, $t2, $t3				#multiply last even 8 bits of a and b and store into t5
 	   add $t6, $t6, $t7				#move product from temp reg to t6
 	   
-
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel
            #-----------------------------------------------------------
