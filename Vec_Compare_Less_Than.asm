@@ -78,7 +78,7 @@ main:
 	   srl $t8, $t8, 24				#shift to clear bits and store last 8 bits of lower vec b into t8
 	   sw $t8, 28($t1)				#store last 8 bits of lower vec b into memory	
 
-	   	   lw $t2, 0($t0) 				#load first 8 bits of vec a into t2
+	   lw $t2, 0($t0) 				#load first 8 bits of vec a into t2
 	   lw $t3, 0($t1)				#load first 8 bits of vec a into t3
 	   sltu $t7, $t2, $t3				#compare if t2 < t3 and store result in t7
 	   bne $t7, $zero, else				#if less than branch to else
@@ -87,7 +87,7 @@ main:
 else:	   addi $t4, $zero, 0x000000FF			#if less than set t4 to 0xFF
 	   j compare1	   				#jump to compare1
 compare1:  
-	   sll $t4, $t4, 24				#shift result of t4 to first 24 bits
+	   sll $t4, $t4, 24				#shift result of t4 to correct position
 	   add $t5, $t5, $t4				#move and store result of t4 to t5
 	   lw $t2, 4($t0) 				#load second 8 bits of vec a into t2
 	   lw $t3, 4($t1)				#load second 8 bits of vec b into t3
@@ -98,7 +98,7 @@ compare1:
 else1: 	   addi $t4, $zero, 0x000000FF			#if less than set t4 to 0xFF
 	   j compare2 					#jump to compare2
 compare2:  
-	   sll $t4, $t4, 16				#shift result of t4 to first 16 bits
+	   sll $t4, $t4, 16				#shift result of t4 to correct position 
 	   add $t5, $t5, $t4	 			#move and store result of t4 to t5
 	   lw $t2, 8($t0) 				#load third 8 bits of vec a into t2
 	   lw $t3, 8($t1)				#load third 8 bits of vec b into t3
@@ -109,7 +109,7 @@ compare2:
 else2: 	   addi $t4, $zero, 0x000000FF			#if less than set t4 to 0xFF
 	   j compare3					#jump to compare3
 compare3: 
-	   sll $t4, $t4, 08				#shift result of t4 to first 8 bits
+	   sll $t4, $t4, 08				#shift result of t4 to correct position 
 	   add $t5, $t5, $t4				#move and store result of t4 to t5
 	   lw $t2, 12($t0) 				#load fourth 8 bits of vec a into t2
 	   lw $t3, 12($t1)				#load fourth 8 bits of vec binto t3
@@ -120,7 +120,7 @@ compare3:
 else3: 	   addi $t4, $zero, 0x000000FF			#if less than set t4 to 0xFF
 	   j compare4					#jump to compare4
 compare4: 
-	   add $t5, $t5, $t4				#move and store result of t4 to t5
+	   add $t5, $t5, $t4				#shift result of t4 to correct position 
 	   lw $t2, 16($t0) 				#load fifth 8 bits of vec a into t2
 	   lw $t3, 16($t1)				#load fifth 8 bits of vec b into t3
 	   sltu $t7, $t2, $t3				#compare t2 < t3 and store result in t7
@@ -130,7 +130,7 @@ compare4:
 else4:     addi $t4, $zero, 0x000000FF			#if less than set t4 to 0xFF
 	   j compare5					#jump to compare5
 compare5: 
-	   sll $t4, $t4, 24				#shift result of t4 to first 24 bits
+	   sll $t4, $t4, 24				#shift result of t4 to correct position 
 	   add $t6, $t6, $t4				#move and store result of t4 to t6
 	   lw $t2, 20($t0) 			  	#load sixth 8 bits of vec a into t2
 	   lw $t3, 20($t1)				#load sixth 8 bits of vec b into t3
@@ -141,7 +141,7 @@ compare5:
 else5:     addi $t4, $zero, 0x000000FF			#if less than set t4 to 0xFF
 	   j compare6					#jump to compare6
 compare6: 
-	   sll $t4, $t4, 16				#shift result of t4 to first 16 bits
+	   sll $t4, $t4, 16				#shift result of t4 to correct position 
 	   add $t6, $t6, $t4	 			#move and store result of t4 to t6
 	   lw $t2, 24($t0) 				#load seventh 8 bits of vec a into t2
 	   lw $t3, 24($t1)				#load seventh 8 bits of vec b into t3
@@ -151,7 +151,7 @@ compare6:
 	   j compare7					#jump to compare7
 else6:     addi $t4, $zero, 0x000000FF			#if less than set t4 to 0xFF
 	   j compare7					#jump to compare7 
-compare7:  sll $t4, $t4, 08				#shift result of t4 to first 8 bits
+compare7:  sll $t4, $t4, 08				#shift result of t4 to correct position 
 	   add $t6, $t6, $t4	 			#move and store result of t4 to t6
 	   lw $t2, 28($t0) 				#load eighth 8 bits of vec a into t2
 	   lw $t3, 28($t1)				#load eighth 8 bits of vec b into t3
@@ -186,3 +186,4 @@ proc1:     j         proc1               # "placeholder" stub
            .data       
 array_1:   .word	
         
+                      
