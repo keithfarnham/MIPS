@@ -21,7 +21,8 @@
            .text                        # main (must be global)
            .globl main
 
-main:       
+main:      #         ***** Your code begins here *****
+	   
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0x5A50A501				#initialize a0 with upper bits of vec a
@@ -78,29 +79,29 @@ main:
 	 
 	
 	   lw $t2, 16($t0) 				#load fifth 8 bits of vec a into t2
-	   sll $t5, $t2, 24		  		#shift 8 bits to first 24 bits and store into t5
+	   sll $t5, $t2, 24		  		#shift to correct position 
 	   
 	   lw $t2, 16($t1) 			    	#load fifth 8 bits of vec b into t2
-	   sll $t2, $t2, 16				#shift result to first 16 bits
+	   sll $t2, $t2, 16				#shift to correct position 
 	   add $t5, $t5, $t2	 			#move result and store into t5
 	   
 	   lw $t2, 20($t0) 				#load sixth 8 bits of vec a into t2
-	   sll $t2, $t2, 08				#shift result to first 8 bits
+	   sll $t2, $t2, 08				#shift to correct position 
 	   add $t5, $t5, $t2	 			#move result and store into t5
 	   
 	   lw $t2, 20($t1) 				#load sixth 8 bits of vec b into t2
 	   add $t5, $t5, $t2	 			#move and store into t5
 	   
-	   lw $t2, 24($t0				#load seventh 8 bits of vec a into t2
-	   sll $t2, $t2, 24				#shift result to first 24 bits
+	   lw $t2, 24($t0)				#load seventh 8 bits of vec a into t2
+	   sll $t2, $t2, 24				#shift to correct position 
 	   add $t6, $t6, $t2	 			#move and store into t6
 	   
 	   lw $t2, 24($t1) 				#load seventh 8 bits of vec b into t2
-	   sll $t2, $t2, 16				#shift result to first 16 bits
+	   sll $t2, $t2, 16				#shift to correct position 
 	   add $t6, $t6, $t2	 			#move and store into t6
 	  
 	   lw $t2, 28($t0) 				#load eighth 8 bits of vec a into t2
-	   sll $t2, $t2, 08				#shift result to first 8 bits 
+	   sll $t2, $t2, 08				#shift to correct position 
 	   add $t6, $t6, $t2	 			#move and store into t6
 	   
 	   lw $t2, 28($t1) 				#load eigth 8 bits of vec b into t2
@@ -124,5 +125,6 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************ 
            .data       
 array_1:   .word	
+array_2:   .word	
         
                       
