@@ -78,86 +78,84 @@ main:
 	   srl $t8, $t8, 24				#shift to clear bits and store last 8 bits of lower vec b into t8
 	   sw $t8, 28($t1)				#store last 8 bits of lower vec b into memory	
 	   
-	   lw $t2, 0($t0) 		#load array slot 0 of $t0 into $t2
-	   lw $t3, 0($t1)		#load array slot 0 of $t1 into $t3
-	   beq $t2, $t3, else	#branch if no carry
-	   addi $t4, $zero, 0x00	#if carry, set value to FF
+	  lw $t2, 0($t0) 				#load first 8 bits of vec a into t2
+	   lw $t3, 0($t1)				#load first 8 bits of vec b into t3
+	   beq $t2, $t3, else				#branch if equal to else
+	   addi $t4, $zero, 0x00			#if not equal, set t4 to 0x00
 	   j compare1
-else:	   addi $t4, $zero, 0x000000FF
-	   j compare1	   
+else:	   addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
+	   j compare1	   				#jump to compare1
 compare1:  
-	   sll $t4, $t4, 24
-	   add $t5, $t5, $t4
-	   lw $t2, 4($t0) 
-	   lw $t3, 4($t1)	
-	   beq $t2, $t3, else1
-	   addi $t4, $zero, 0x00
-	   j compare2
-else1: 	   addi $t4, $zero, 0x000000FF
-	   j compare2 
+	   sll $t4, $t4, 24				#shift result in t4 to first 24 bits
+	   add $t5, $t5, $t4				#move and store result of t4 to t5
+	   lw $t2, 4($t0) 				#load second 8 bits of vec a into t2
+	   lw $t3, 4($t1)				#load second 8 bits of vec b into t3
+	   beq $t2, $t3, else1				#branch if equal to else1
+	   addi $t4, $zero, 0x00			#if not equal, set t4 to 0x00 
+	   j compare2					#jump to compare2
+else1: 	   addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
+	   j compare2 					#jump to compare2
 compare2:  
-	   sll $t4, $t4, 16
-	   add $t5, $t5, $t4	 
-	   lw $t2, 8($t0) 
-	   lw $t3, 8($t1)	
-	   beq $t2, $t3, else2
-	   addi $t4, $zero, 0x00
-	   j compare3
-else2: 	   addi $t4, $zero, 0x000000FF
-	   j compare3
+	   sll $t4, $t4, 16				#shift result of t4 to first 16 bits
+	   add $t5, $t5, $t4	 			#move and store result of t4 to t5
+	   lw $t2, 8($t0) 				#load third 8 bits of vec a into t2
+	   lw $t3, 8($t1)				#load third 8 bits of vec b into t3
+	   beq $t2, $t3, else2				#branch if equal to else2
+	   addi $t4, $zero, 0x00			#if not equal, set t4 to 0x00
+	   j compare3					#jump to compare3
+else2: 	   addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
+	   j compare3					#jump to compare3
 compare3: 
-	   sll $t4, $t4, 08
-	   add $t5, $t5, $t4
-	   lw $t2, 12($t0) 
-	   lw $t3, 12($t1)
-	   beq $t2, $t3, else3
-	   addi $t4, $zero, 0x00
-	   j compare4
-else3: 	   addi $t4, $zero, 0x000000FF
-	   j compare4
+	   sll $t4, $t4, 08				#shift result of t4 to first 8 bits
+	   add $t5, $t5, $t4				#move and store result of t4 into t5
+	   lw $t2, 12($t0) 				#load fourth 8 bits of vec a into t2
+	   lw $t3, 12($t1)				#load fourth 8 bits of vec a into t3
+	   beq $t2, $t3, else3				#branch if equal to else3
+	   addi $t4, $zero, 0x00			#if not equal, set t4 to 0x00
+	   j compare4					#jump to compare4
+else3: 	   addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
+	   j compare4					#jump to compare4
 compare4: 
-	   add $t5, $t5, $t4
-	   lw $t2, 16($t0) 
-	   lw $t3, 16($t1)
-	   beq $t2, $t3, else4
-	   addi $t4, $zero, 0x00
-	   j compare5
-else4:     addi $t4, $zero, 0x000000FF
-	   j compare5
+	   add $t5, $t5, $t4				#move and store result into t5
+	   lw $t2, 16($t0) 				#load fifth 8 bits of vec a into t2
+	   lw $t3, 16($t1)				#load fifth 8 bits of vec b into t3
+	   beq $t2, $t3, else4				#branch if equal to else4
+	   addi $t4, $zero, 0x00			#if not equal, set t4 to 0x00
+	   j compare5					#jump to compare5
+else4:     addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
+	   j compare5					#jump to compare5
 compare5: 
-	   sll $t4, $t4, 24
-	   add $t6, $t6, $t4
-	   lw $t2, 20($t0) 		
-	   lw $t3, 20($t1)		
-	   beq $t2, $t3, else5	
-	   addi $t4, $zero, 0x00	
-	   j compare6
-else5:     addi $t4, $zero, 0x000000FF
-	   j compare6
+	   sll $t4, $t4, 24				#shift result of t4 to first 24 bits
+	   add $t6, $t6, $t4				#move and store result of t4 to t6
+	   lw $t2, 20($t0) 				#load sixth 8 bits of vec a into t2
+	   lw $t3, 20($t1)				#load sixth 8 bits of vec b into t3
+	   beq $t2, $t3, else5				#branch if equal to else5
+	   addi $t4, $zero, 0x00			#if not equal, set t4 to 0x00
+	   j compare6					#jump to compare6
+else5:     addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
+	   j compare6					#jump to compare6
 compare6: 
-	   sll $t4, $t4, 16
-	   add $t6, $t6, $t4	 
-	   lw $t2, 24($t0) 
-	   lw $t3, 24($t1)	
-	   beq $t2, $t3, else6
-	   addi $t4, $zero, 0x00
-	   j compare7
-else6:     addi $t4, $zero, 0x000000FF
-	   j compare7
-compare7:  sll $t4, $t4, 08
-	   add $t6, $t6, $t4	 
-	   lw $t2, 28($t0) 
-	   lw $t3, 28($t1)	
-	   beq $t2, $t3, else7
-	   addi $t4, $zero, 0x00
-	   j compare8
-else7:     addi $t4, $zero, 0x000000FF
-	   j compare8
-compare8:  add $t6, $t6, $t4
-	   
-
-	   
-	   #LOWER BITS SAVED INTO $t5 UPPER BITS SAVED INTO $t6
+	   sll $t4, $t4, 16				#shift result of t4 to first 16 bits
+	   add $t6, $t6, $t4	 			#move and store result of t4 to t6
+	   lw $t2, 24($t0) 				#load seventh 8 bits of vec a into t2
+	   lw $t3, 24($t1)				#load seventh 8 bits of vec b into t3
+	   beq $t2, $t3, else6				#branch if equal to else 6
+	   addi $t4, $zero, 0x00			#if not equal, set t4 to 0x00
+	   j compare7					#jump to compare7
+else6:     addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
+	   j compare7					#jump to compare7
+compare7:  sll $t4, $t4, 08				#shift result of t4 to first 8 bits
+	   add $t6, $t6, $t4	 			#move and store result of t4 to t6
+	   lw $t2, 28($t0) 				#load eighth 8 bits of vec a into t2
+	   lw $t3, 28($t1)				#load eighth 8 bits of vec b into t3
+	   beq $t2, $t3, else7				#branch if equal to else7
+	   addi $t4, $zero, 0x00			#if not equal, set t4 to 0x00
+	   j compare8					#jump to compare8
+else7:     addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
+	   j compare8					#jump to compare8
+compare8:  add $t6, $t6, $t4				#move and store result of t6 to t4
+	  
+	   #LOWER BITS SAVED INTO $t6 UPPER BITS SAVED INTO $t5
 
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel
@@ -176,8 +174,8 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
-           .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
+           .data       
 array_1:   .word	
-array_2:   .word	
+	
         
-                      
+           
