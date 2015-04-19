@@ -21,7 +21,8 @@
            .text                        # main (must be global)
            .globl main
 
-main:      
+main:      #   ***** Your code begins here *****
+
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0x5A50A501				#initialize a0 with upper bits of vec a
@@ -76,31 +77,31 @@ main:
 	   srl $t8, $t8, 24				#shift to clear bits and store last 8 bits of lower vec b into t8
 	   sw $t8, 28($t1)				#store last 8 bits of lower vec b into memory	
 	   
-	   #start simulation
+	   
 	   lw $t2, 0($t0) 				#load first 8 bits of vec a into t2
-	   sll $t5, $t2, 24				#shift to first 24 bits
+	   sll $t5, $t2, 24				#shift to correct position 
 	     
 	   lw $t2, 0($t1) 				#load first 8 bits of vec b into  t2
-	   sll $t2, $t2, 16				#shift result to first 16 bits
+	   sll $t2, $t2, 16				#shift to correct position 
 	   add $t5, $t5, $t2	 			#move result of shift and store in t5
 	  
 	   lw $t2, 04($t0) 				#load second 8 bits of vec a into t2	
-	   sll $t2, $t2, 08				#shift result to first 8 bits
+	   sll $t2, $t2, 08				#shift to correct position 
 	   add $t5, $t5, $t2	 			#move result of shift and store in t5
 	   
 	   lw $t2, 04($t1) 				#load second 8 bits of vec b into t2
 	   add $t5, $t5, $t2	 			#move and store into t5
 	   
 	   lw $t2, 08($t0) 				#load third 8 bits of vec a into t2
-	   sll $t2, $t2, 24				#shift result to first 24 bits
+	   sll $t2, $t2, 24				#shift to correct position 
 	   add $t6, $t6, $t2	 			#move result and store into t6
 	   
 	   lw $t2, 08($t1) 				#load third 8 bits of vec b into t2		
-	   sll $t2, $t2, 16				#shift result to first 16 bits
+	   sll $t2, $t2, 16				#shift to correct position 
 	   add $t6, $t6, $t2	 			#move result and store into t6
 	   
 	   lw $t2, 12($t0) 				#load fourth 8 bits of vec a into t2
-	   sll $t2, $t2, 08				#shift result to first 8 bits
+	   sll $t2, $t2, 08				#shift to correct position 
 	   add $t6, $t6, $t2	 			#move result and store into t6
 	   
 	   lw $t2, 12($t1) 				#load fourth 8 bits of vec b into t2			
@@ -123,6 +124,7 @@ proc1:     j         proc1               # "placeholder" stub
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
            .data       
-array_1:   .word		
+array_1:   .word	
+	
         
                       
