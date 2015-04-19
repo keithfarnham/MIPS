@@ -116,8 +116,7 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
-           .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
-array_1:   .word	0xAE, 0xE9, 0x5A, 0xE0, 0xF0, 0x80, 0xCC, 0x66
-array_2:   .word	0x33, 0x14, 0x61, 0x70, 0x60, 0x98, 0x88, 0xAB 
+           .data       
+array_1:   .word
         
                       
