@@ -21,8 +21,7 @@
            .text                        # main (must be global)
            .globl main
 
-main:      #         ***** Your code begins here *****
-	   
+main:       
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0x5A50A501				#initialize a0 with upper bits of vec a
@@ -125,6 +124,5 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************ 
            .data       
 array_1:   .word	
-array_2:   .word	
         
                       

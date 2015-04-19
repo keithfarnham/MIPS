@@ -21,8 +21,7 @@
            .text                        # main (must be global)
            .globl main
 
-main:      #         ***** Your code begins here *****
-
+main:      
 	   la $t0, array_1 #initialize $t1 to point to memory location with label "array_1"
 	   add $t1, $t0, 32 #initialize $t0 to point to memory location with label "array_2"
 	   li $a0, 0x5AFB6C1D
@@ -173,6 +172,5 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************ 
            .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
 array_1:   .word	
-array_2:   .word	
         
                       
