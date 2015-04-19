@@ -1,6 +1,6 @@
 #*********************** 3 4 1   T o p   L e v e l   M o d u l e *************************
 #
-# File name:        Vector_Permute.asm
+# File name:        Vec_Permute.asm
 # Version:          1.0
 # Date:             Apr. 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran
