@@ -23,8 +23,7 @@
            .text                        # main (must be global)
            .globl main
 
-main:      #         ***** Your code begins here *****
-
+main:      
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0x120C1A0D				#initialize a0 with upper bits of vec a
@@ -105,85 +104,82 @@ main:      #         ***** Your code begins here *****
 	   sll $t5, $t9, 24				#shift to clear bits higher than last 8 bits of lower vec c
 	   srl $t5, $t5, 24				#shift to clear bits and store last 8 bits of lower vec c into t5
 	   sw $t5, 28($t1)				#store last 8 bits of lower vec c into memory	
-	   srl $t5, $t5, $zero				#initialize t5 to zero
+	   add $t5, $zero, $zero			#initialize t5 to zero
 	   
-	   la $t0, 0x10010000
-	   la $t1, 0x10010020
-	   la $t2, 0x10010040
+	   la $t0, 0x10010000				#initialize t0 with memory location 0x10010000 to load vec a
+	   la $t1, 0x10010020				#initialize t1 with memory location 0x10010020 to store vec b
+	   la $t2, 0x10010040				#initialize t2 with memory location 0x10010040 to store vec c
 	   
-	   lw $t3, 0($t0) 	#load array slot 0 of $t0 into $t2
-	   lw $t4, 0($t1)	#load array slot 0 of $t1 into $t3
-	   lw $t7, 0($t2)	
-	   mul $t4, $t4, $t3		
-	   add $t3, $t4, $t7
-	   sll $t3, $t3, 24
-	   add $t5, $t5, $t3
+	   lw $t3, 0($t0) 				#load first 8 bits of vec a into t3
+	   lw $t4, 0($t1)				#load first 8 bits of vec b into t4
+	   lw $t7, 0($t2)				#load first 8 bits of vec c into t7
+	   mul $t4, $t4, $t3				#multiply 8 bits from vec a with 8 bits from vec b
+	   add $t3, $t4, $t7				#add product of vec a and b with vec c value 
+	   sll $t3, $t3, 24				#shift sum to correct position
+	   add $t5, $t5, $t3				#move sum to t5
 	   
-	   lw $t3, 4($t0) 	#load array slot 0 of $t0 into $t2
-	   lw $t4, 4($t1)	#load array slot 0 of $t1 into $t3
-	   lw $t7, 4($t2)	
-	   mul $t4, $t4, $t3		
-	   add $t3, $t4, $t7
-	   sll $t3, $t3, 24
-	   srl $t3, $t3, 8
-	   add $t5, $t5, $t3
+	   lw $t3, 4($t0) 				#load second 8 bits of vec a into t3
+	   lw $t4, 4($t1)				#load second 8 bits of vec b into t4
+	   lw $t7, 4($t2)				#load second 8 bits of vec c into t7
+	   mul $t4, $t4, $t3				#multiply 8 bits from vec a with 8 bits from vec b
+	   add $t3, $t4, $t7				#add product of vec a and b with vec c value 
+	   sll $t3, $t3, 24				#shift sum to left most bit to truncate
+	   srl $t3, $t3, 8				#shift sum to correct position
+	   add $t5, $t5, $t3				#move sum to t5	
 	   
-	   lw $t3, 8($t0) 	#load array slot 0 of $t0 into $t2
-	   lw $t4, 8($t1)	#load array slot 0 of $t1 into $t3
-	   lw $t7, 8($t2)	
-	   mul $t4, $t4, $t3		
-	   add $t3, $t4, $t7
-	   sll $t3, $t3, 24
-	   srl $t3, $t3, 16
-	   add $t5, $t5, $t3
-	   
-	   lw $t3, 12($t0) 	#load array slot 0 of $t0 into $t2
-	   lw $t4, 12($t1)	#load array slot 0 of $t1 into $t3
-	   lw $t7, 12($t2)	
-	   mul $t4, $t4, $t3		
-	   add $t3, $t4, $t7
-	   sll $t3, $t3, 24
-	   srl $t3, $t3, 24
-	   add $t5, $t5, $t3
-	   
-	   lw $t3, 16($t0) 	#load array slot 0 of $t0 into $t2
-	   lw $t4, 16($t1)	#load array slot 0 of $t1 into $t3
-	   lw $t7, 16($t2)	
-	   mul $t4, $t4, $t3		
-	   add $t3, $t4, $t7
-	   sll $t3, $t3, 24
-	   add $t6, $t6, $t3
-	   
-	   lw $t3, 20($t0) 	#load array slot 0 of $t0 into $t2
-	   lw $t4, 20($t1)	#load array slot 0 of $t1 into $t3
-	   lw $t7, 20($t2)	
-	   mul $t4, $t4, $t3		
-	   add $t3, $t4, $t7
-	   sll $t3, $t3, 24
-	   srl $t3, $t3, 8
-	   add $t6, $t6, $t3
-
-	   lw $t3, 24($t0) 	#load array slot 0 of $t0 into $t2
-	   lw $t4, 24($t1)	#load array slot 0 of $t1 into $t3
-	   lw $t7, 24($t2)	
-	   mul $t4, $t4, $t3		
-	   add $t3, $t4, $t7
-	   sll $t3, $t3, 24
-	   srl $t3, $t3, 16
-	   add $t6, $t6, $t3
-	   
-	   lw $t3, 28($t0) 	#load array slot 0 of $t0 into $t2
-	   lw $t4, 28($t1)	#load array slot 0 of $t1 into $t3
-	   lw $t7, 28($t2)	
-	   mul $t4, $t4, $t3		
-	   add $t3, $t4, $t7
-	   sll $t3, $t3, 24
-	   srl $t3, $t3, 24
-	   add $t6, $t6, $t3
-
-	   
-	   #LOWER BITS SAVED INTO $t5 UPPER BITS SAVED INTO $t6
-
+	   lw $t3, 8($t0) 				#load third 8 bits of vec a into t3
+	   lw $t4, 8($t1)				#load third 8 bits of vec b into t4
+	   lw $t7, 8($t2)				#load third 8 bits of vec c into t7
+	   mul $t4, $t4, $t3				#multiply 8 bits from vec a with 8 bits from vec b
+	   add $t3, $t4, $t7				#add product of vec a and b with vec c value 			
+	   sll $t3, $t3, 24				#shift sum to left most bit to truncate
+	   srl $t3, $t3, 16				#shift sum to correct position
+	   add $t5, $t5, $t3				#move sum to t5					
+	   						
+	   lw $t3, 12($t0) 				#load fourth 8 bits of vec a into t3
+	   lw $t4, 12($t1)				#load fourth 8 bits of vec b into t4
+	   lw $t7, 12($t2)				#load fourth 8 bits of vec c into t7
+	   mul $t4, $t4, $t3				#multiply 8 bits from vec a with 8 bits from vec b
+	   add $t3, $t4, $t7				#add product of vec a and b with vec c value 						
+	   sll $t3, $t3, 24				#shift sum to left most bit to truncate
+	   srl $t3, $t3, 24				#shift sum to correct position
+	   add $t5, $t5, $t3				#move sum to t5	
+	   						
+	   lw $t3, 16($t0) 				#load fifth 8 bits of vec a into t3
+	   lw $t4, 16($t1)				#load fifth 8 bits of vec b into t4
+	   lw $t7, 16($t2)				#load fifth 8 bits of vec c into t7				
+	   mul $t4, $t4, $t3				#multiply 8 bits from vec a with 8 bits from vec b
+	   add $t3, $t4, $t7				#add product of vec a and b with vec c value 					
+	   sll $t3, $t3, 24				#shift sum to correct position
+	   add $t6, $t6, $t3				#move sum to t6
+	   					
+	   lw $t3, 20($t0) 				#load sixth 8 bits of vec a into t3
+	   lw $t4, 20($t1)				#load sixth 8 bits of vec b into t4
+	   lw $t7, 20($t2)				#load sixth 8 bits of vec c into t7					
+	   mul $t4, $t4, $t3				#multiply 8 bits from vec a with 8 bits from vec b
+	   add $t3, $t4, $t7				#add product of vec a and b with vec c value 					
+	   sll $t3, $t3, 24				#shift sum to left most bit to truncate
+	   srl $t3, $t3, 8				#shift sum to correct position			
+	   add $t6, $t6, $t3				#move sum to t6
+						
+	   lw $t3, 24($t0) 				#load seventh 8 bits of vec a into t3
+	   lw $t4, 24($t1)				#load seventh 8 bits of vec b into t4
+	   lw $t7, 24($t2)				#load seventh 8 bits of vec c into t7				
+	   mul $t4, $t4, $t3				#multiply 8 bits from vec a with 8 bits from vec b
+	   add $t3, $t4, $t7				#add product of vec a and b with vec c value 						
+	   sll $t3, $t3, 24				#shift sum to left most bit to truncate
+	   srl $t3, $t3, 16				#shift sum to correct position				
+	   add $t6, $t6, $t3				#move sum to t6
+	   						
+	   lw $t3, 28($t0) 				#load seventh 8 bits of vec a into t3
+	   lw $t4, 28($t1)				#load seventh 8 bits of vec b into t4
+	   lw $t7, 28($t2)				#load seventh 8 bits of vec c into t7			
+	   mul $t4, $t4, $t3				#multiply 8 bits from vec a with 8 bits from vec b
+	   add $t3, $t4, $t7				#add product of vec a and b with vec c value 				
+	   sll $t3, $t3, 24				#shift sum to left most bit to truncate
+	   srl $t3, $t3, 24				#shift sum to correct position
+	   add $t6, $t6, $t3				#move sum to t6
+							
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel
            #-----------------------------------------------------------
