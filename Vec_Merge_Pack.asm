@@ -76,84 +76,83 @@ main:
 	   srl $t8, $t8, 24				#shift to clear bits and store last 8 bits of lower vec b into t8
 	   sw $t8, 28($t1)				#store last 8 bits of lower vec b into memory	
 	   
-	   #1st shift
-	   lw $t2, 0($t0) 				
-	   sll $t2, $t2, 28
-	   add $t5, $t5, $t2		
-	   #2nd shift   
-	   lw $t2, 04($t0) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 04
-	   add $t5, $t5, $t2		
-	   #3rd shift 
-	   lw $t2, 08($t0) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 08
-	   add $t5, $t5, $t2 
-	   #4th shift  
-	   lw $t2, 12($t0) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 12
-	   add $t5, $t5, $t2
-	   #5th shift
-	   lw $t2, 16($t0) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 16
-	   add $t5, $t5, $t2
-	   #6th shift
-	   lw $t2, 20($t0) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 20
-	   add $t5, $t5, $t2 
-	   #7th shift
-	   lw $t2, 24($t0) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 24
-	   add $t5, $t5, $t2
-	   #8th shift
-	   lw $t2, 28($t0) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 28
-	   add $t5, $t5, $t2
-	   #9th shift
-	   lw $t2, 0($t1) 
-	   sll $t2, $t2, 28
-	   add $t6, $t6, $t2
-	   #10th shift
-	   lw $t2, 04($t1) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 04
-	   add $t6, $t6, $t2
-	   #11th shift
-	   lw $t2, 08($t1) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 08
-	   add $t6, $t6, $t2
-	   #12th shift
-	   lw $t2, 12($t1) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 12
-	   add $t6, $t6, $t2
-	   #13th shift
-	   lw $t2, 16($t1) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 16
-	   add $t6, $t6, $t2
-	   #14th shift
-	   lw $t2, 20($t1) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 20
-	   add $t6, $t6, $t2
-	   #15th shift
-	   lw $t2, 24($t1) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 24
-	   add $t6, $t6, $t2
-	   #16th shift
-	   lw $t2, 28($t1) 
-	   sll $t2, $t2, 28
-	   srl $t2, $t2, 28
-	   add $t6, $t6, $t2
+	   lw $t2, 0($t0) 				#load first 8 bits of vec a to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   add $t5, $t5, $t2				#move and store result of t2 to t5
+	    
+	   lw $t2, 04($t0) 				#load second 8 bits of vec a to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit 
+	   srl $t2, $t2, 04				#shift t2 to correct position 
+	   add $t5, $t5, $t2				#move and store result of t2 to t5
+	    
+	   lw $t2, 08($t0) 				#load third 8 bits of vec a to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 08				#shift t2 to correct position 
+	   add $t5, $t5, $t2 				#move and store result of t2 to t5
+	
+	   lw $t2, 12($t0) 				#load fourth 8 bits of vec a to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 12				#shift t2 to correct position
+	   add $t5, $t5, $t2				#move and store result of t2 to t5
+	 
+	   lw $t2, 16($t0) 				#load fifth 8 bits of vec a to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 16				#shift t2 to correct position
+	   add $t5, $t5, $t2				#move and store result of t2 to t5
+	  
+	   lw $t2, 20($t0)				#load sixth 8 bits of vec a to t2 
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 20				#shift t2 to correct position
+	   add $t5, $t5, $t2 				#move and store result of t2 to t5
+	   
+	   lw $t2, 24($t0)				#load seventh 8 bits of vec a to t2 
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 24				#shift t2 to correct position
+	   add $t5, $t5, $t2				#move and store result of t2 to t5
+	   
+	   lw $t2, 28($t0) 				#load eighth 8 bits of vec a to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 28				#shift t2 to correct position
+	   add $t5, $t5, $t2				#move and store result of t2 to t5
+	  
+	   lw $t2, 0($t1) 				#load first 8 bits of vec b to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   add $t6, $t6, $t2				#move and store result of t2 to t6
+	  			
+	   lw $t2, 04($t1) 				#load second 8 bits of vec b to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit	
+	   srl $t2, $t2, 04				#shift t2 to correct position
+	   add $t6, $t6, $t2				#move and store result of t2 to t6
+	   
+	   lw $t2, 08($t1) 				#load third 8 bits of vec b to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 08				#shift t2 to correct position
+	   add $t6, $t6, $t2				#move and store result of t2 to t6
+	   
+	   lw $t2, 12($t1) 				#load fourth 8 bits of vec b to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 12				#shift t2 to correct position
+	   add $t6, $t6, $t2				#move and store result of t2 to t6
+	 
+	   lw $t2, 16($t1) 				#load fifth 8 bits of vec b to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 16				#shift t2 to correct position
+	   add $t6, $t6, $t2				#move and store reuslt of t2 to t6
+	 =
+	   lw $t2, 20($t1) 				#load sixth 8 bits of vec b to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 20				#shift t2 to correct position
+	   add $t6, $t6, $t2				#move and store result of t2 to t6
+	  
+	   lw $t2, 24($t1) 				#load seventh 8 bits of vec b to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 24				#shift t2 to correct position
+	   add $t6, $t6, $t2				#move and store result of t2 to t6
+	   
+	   lw $t2, 28($t1) 				#load eigthth 8 bits of vec b to t2
+	   sll $t2, $t2, 28				#shift t2 to left most bit
+	   srl $t2, $t2, 28				#shift t2 to correct position 
+	   add $t6, $t6, $t2				#move and store result of t2 to t6
 
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel
@@ -170,7 +169,5 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
-           .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
+           .data       
 array_1:   .word	
-        
-                      
