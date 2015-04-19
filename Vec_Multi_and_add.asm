@@ -2,8 +2,8 @@
 #
 # File name:        341_proj1b.asm
 # Version:          1.0
-# Date:             Feb. 25, 2015  
-# Programmer:       Keith Farnham
+# Date:             Apr. 28, 2015  
+# Programmer:       Keith Farnham, Victor Tran
 #
 # Description:      Using a sequence of MIPS instructions......
 #

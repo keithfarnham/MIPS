@@ -1,8 +1,8 @@
 #*********************** 3 4 1   T o p   L e v e l   M o d u l e *************************
 #
-# File name:        341_proj1b.asm
+# File name:        Vec_Add_Saturated.asm
 # Version:          1.0
-# Date:             Feb. 25, 2015  
+# Date:             Apr. 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran 
 #
 # Description:      Using a sequence of MIPS instructions 
@@ -23,9 +23,7 @@
            .text                        # main (must be global)
            .globl main
 
-main:      #         ***** Your code begins here *****
-
-
+main:
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0x233C475D				#initialize a0 with upper bits of vec a
@@ -186,7 +184,7 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
-           .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
+           .data
 array_1:   .word
         
                       

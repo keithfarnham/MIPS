@@ -1,9 +1,9 @@
 #*********************** 3 4 1   T o p   L e v e l   M o d u l e *************************
 #
-# File name:        Vec_Permute.asm
+# File name:        Vector_Permute.asm
 # Version:          1.0
-# Date:             Feb. 25, 2015  
-# Programmer:       Keith Farnham
+# Date:             Apr. 28, 2015  
+# Programmer:       Keith Farnham, Victor Tran
 #
 # Description:      Using a sequence of MIPS instructions......
 #
@@ -23,7 +23,7 @@
            .text                        # main (must be global)
            .globl main
 
-main:      #         ***** Your code begins here *****
+main:     
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0xA567013D				#initialize a0 with upper bits of vec a
