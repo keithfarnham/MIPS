@@ -23,8 +23,7 @@
            .text                        # main (must be global)
            .globl main
 
-main:      #         ***** Your code begins here *****
-	   
+main:      
 	    la $t0, array_1 #initialize $t1 to point to memory location with label "array_1"
 	   add $t1, $t0, 32 #initialize $t0 to point to memory location with label "array_2"
 	   li $a0, 0x230C124D
