@@ -5,9 +5,10 @@
 # Date:             Apr. 28, 2015   
 # Programmer:       Keith Farnham, Victor Tran
 #
-# Description:      Using a sequence of MIPS instructions......
-#
-# Register useage:  $t1, $t0, $v0
+# Description: The “splat” instruction is used to copy any element from one vector into all of the elements of 
+#	       another vector as shown in the diagram below. Each element of the result vector d is component b 
+#	       of vector a.
+# Register useage:  $a0-$a2, $t0-$t2, $t4-$t6, $t8, $v0
 #
 # 
 # Notes:     
@@ -85,7 +86,7 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
-           .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
+           .data     
 array_1:   .word	
         	
                       

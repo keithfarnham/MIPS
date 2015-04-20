@@ -5,9 +5,10 @@
 # Date:             Apr. 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran
 #
-# Description:      Using a sequence of MIPS instructions......
+# Description: The instruction fills the result vector d with element from either vector a or vector b, 
+#	       depending upon the “element specifier” in vector c. The vector elements can be specified in any order. 
 #
-# Register useage:  $t1, $t0, $v0
+# Register useage:  $a0-$a3, $t0-$t3, $t5-$t9
 #
 # 
 # Notes:     

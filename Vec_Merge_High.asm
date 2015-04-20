@@ -5,9 +5,10 @@
 # Date:             April 12, 2015  
 # Programmer:       Keith Farnham, Victor Tran 
 #
-# Description:      Using a sequence of MIPS instructions......
+# Description: The even elements of the result vector d are obtained left-to-right from the high elements of vector a. The odd 
+#	       elements of the result are obtained left-to-right from the high elements of vector b.  
 #
-# Register useage:  $t1, $t0, $v0
+# Register useage:  $a0-$a3, $t0-$t2, $t4-$t6, $t8, $v0
 #
 # 
 # Notes:     
@@ -21,8 +22,7 @@
            .text                        # main (must be global)
            .globl main
 
-main:      #   ***** Your code begins here *****
-
+main:      
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0x5A50A501				#initialize a0 with upper bits of vec a
@@ -106,7 +106,6 @@ main:      #   ***** Your code begins here *****
 	   
 	   lw $t2, 12($t1) 				#load fourth 8 bits of vec b into t2			
 	   add $t6, $t6, $t2		   		#move and store into t6
-	   #LOWER BITS SAVED INTO $t6 UPPER BITS SAVED INTO $t5
 
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel

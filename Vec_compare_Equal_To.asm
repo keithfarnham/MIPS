@@ -5,10 +5,10 @@
 # Date:             Apr. 12, 2015  
 # Programmer:       Keith Farnham, Victor Tran 
 #
-# Description:      Using a sequence of MIPS instructions......
-#
-# Register useage:  $t1, $t0, $v0
-#
+# Description: Each element of the result vector d is TRUE (all bits = 1) if the corresponding element of 
+#	       vector a is equal to the corresponding element of vector b. Otherwise the element of result is 
+#	       FALSE (all bits = 0)
+# Register useage:  $a0-$a3, $t0-$t8, $v0
 # 
 # Notes:     
 #
@@ -24,7 +24,6 @@
            .globl main
 
 main:      
-
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0x5A50A501				#initialize a0 with upper bits of vec a
@@ -157,8 +156,6 @@ compare7:
 else7:     addi $t4, $zero, 0x000000FF			#if equal add 0xFF to t4
 	   j compare8					#jump to compare8
 compare8:  add $t6, $t6, $t4				#move and store result of t6 to t4
-	  
-	   #LOWER BITS SAVED INTO $t6 UPPER BITS SAVED INTO $t5
 
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel

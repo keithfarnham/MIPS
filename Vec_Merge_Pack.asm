@@ -1,13 +1,14 @@
 #*********************** 3 4 1   T o p   L e v e l   M o d u l e *************************
 #
-# File name:        341_proj1b.asm
+# File name:        Vec_Merge_Pack.asm
 # Version:          1.0
-# Date:             April 12, 2015  
+# Date:             April 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran 
 #
-# Description:      Using a sequence of MIPS instructions......
+# Description: Each high element of the result vector d is the truncation of the corresponding wider element of vector a. 
+#	       Each low element of the result is the truncation of the corresponding wider element of vector b. 
 #
-# Register useage:  $t1, $t0, $v0
+# Register useage:  $a0-$a3, $t0-$t2, $t5, $t6, $t8, $v0
 #
 # 
 # Notes:     

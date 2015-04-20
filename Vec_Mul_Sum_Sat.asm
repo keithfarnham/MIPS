@@ -5,9 +5,10 @@
 # Date:             Apr. 28, 2015   
 # Programmer:       Keith Farnham, Victor Tran
 #
-# Description:      Using a sequence of MIPS instructions......
-#
-# Register useage:  $t1, $t0, $v0
+# Description: Each element of vector d is the 16-bit sum of the corresponding elements of vector c and the 
+#	       16-bit “temp” product of the 8-bit elements of vector a and vector b which overlap the positions of 
+#	       that element in c. The sum is performed with 16-bit saturating addition (no-wrap). 
+# Register useage:  $a0-$a3, $t0-$t9, $v0
 #
 # 
 # Notes:     
@@ -23,8 +24,7 @@
            .text                        # main (must be global)
            .globl main
 
-main:      #         ***** Your code begins here *****
-
+main:      
 	   la $t0, array_1 				#load t0 with memory location 0x10010000 to store vec a
 	   add $t1, $t0, 32 				#load t1 with memory location 0x10010020 to store vec b
 	   li $a0, 0x230CF14D				#initialize a0 with upper bits of vec a
@@ -172,8 +172,6 @@ noCarry3:
 	   addi $t6, $t6, 0x0000FFFF			#if carry, set result of sum to 0x0000FFFF
 noCarry4:   
 
-
-
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel
            #-----------------------------------------------------------
@@ -191,7 +189,7 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
-           .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
+           .data       
 array_1:   .word	
         
                       

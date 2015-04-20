@@ -5,9 +5,10 @@
 # Date:             Apr. 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran 
 #
-# Description:      Using a sequence of MIPS instructions......
+# Description: Each element of the result vector d is TRUE (all bits = 1) if the corresponding element of vector a
+#	       is less than the corresponding element of vector b. Otherwise the element of result is FALSE (all bits = 0)
 #
-# Register useage:  $t1, $t0, $v0
+# Register useage:  $a0-$a3, $t0-$t8, $v0
 #
 # 
 # Notes:     
@@ -162,9 +163,6 @@ compare7:  sll $t4, $t4, 08				#shift result of t4 to correct position
 else7:     addi $t4, $zero, 0x000000FF			#if less than set t4 to 0xFF
 	   j compare8					#jump to compare8
 compare8:  add $t6, $t6, $t4				#move and store result of t4 to t6
-	   
-	   
-	   #LOWER BITS SAVED INTO $t6 UPPER BITS SAVED INTO $t5
 
            #-----------------------------------------------------------
            # "Due diligence" to return control to the kernel
