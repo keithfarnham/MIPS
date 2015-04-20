@@ -5,9 +5,10 @@
 # Date:             Apr. 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran 
 #
-# Description:      Using a sequence of MIPS instructions 
+# Description: Each element of vector a is added to the corresponding element of b. 
+#	       The unsigned-integer (no-wrap) is placed into the corresponding element of d.
 #
-# Register useage:  $t1, $t0, $v0
+# Register useage:  $a0-$a3, $t0-$t8, $v0
 #
 # 
 # Notes:     

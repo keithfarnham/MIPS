@@ -1,13 +1,14 @@
 #*********************** 3 4 1   T o p   L e v e l   M o d u l e *************************
 #
-# File name:        Vec_Mulo.asm
+# File name:        Vec_Mule.asm
 # Version:          1.0
 # Date:             Apr. 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran
 #
-# Description:      Using a sequence of MIPS instructions......
+# Description: Each element of vector d is the full-length (16-bit) product of the corresponding high (i.e. even) 
+#	       half-width elements of vector a and vector b.
 #
-# Register useage:  $t1, $t0, $v0
+# Register useage:  $a0-$a3, $t0-$t8, $v0
 #
 # 
 # Notes:     

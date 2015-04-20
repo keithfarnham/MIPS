@@ -5,9 +5,10 @@
 # Date:             Apr. 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran
 #
-# Description:      Using a sequence of MIPS instructions......
+# Description: Each element of vector d is the full length (16-bit) product corresponding low (i.e. odd) 
+#	       half-width elements of vector a and vector b. 
 #
-# Register useage:  $t1, $t0, $v0
+# Register useage:  $a0-$a3, $t0-$t8, $v0
 #
 # 
 # Notes:     

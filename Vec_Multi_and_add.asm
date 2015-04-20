@@ -1,13 +1,14 @@
 #*********************** 3 4 1   T o p   L e v e l   M o d u l e *************************
 #
-# File name:        341_proj1b.asm
+# File name:        Vec_Multi_and_add.asm
 # Version:          1.0
 # Date:             Apr. 28, 2015  
 # Programmer:       Keith Farnham, Victor Tran
 #
-# Description:      Using a sequence of MIPS instructions......
-#
-# Register useage:  $t1, $t0, $v0
+# Description: Multiply the vector elements in a by the vector elements in b and then add the intermediate result to 
+#	       the vector elements in c, then store the resulting element in vector d. The sum of the intermediate 
+#	       product with elements in vector c are “truncated” for a half-length results placed into vector d.
+# Register useage:  $a0-$a3, $t0-$t9, $v0
 #
 # 
 # Notes:     
@@ -197,7 +198,7 @@ proc1:     j         proc1               # "placeholder" stub
            #************************************************************
            # P R O J E C T    R E L A T E D    D A T A   S E C T I O N
            #************************************************************ 
-           .data       # array[0]   array[1]    array[2]    array[3]    array[4]    array[5]
+           .data       
 array_1:   .word	
         
                       
